@@ -30,11 +30,11 @@ const NewNote = () => {
           axios
             .post("/", note)
             .then((res) => {
-              console.log(res);
+              // console.log(res);
               history.push("/");
             })
             .catch((err) => {
-              console.log(err);
+              // console.log(err);
             });
         }}
       >

@@ -48,11 +48,11 @@ const EditNote = () => {
           axios
             .put(`/${id}`, note)
             .then((res) => {
-              console.log(res);
+              // console.log(res);
               history.push("/");
             })
             .catch((err) => {
-              console.log(err);
+              // console.log(err);
             });
         }}
       >

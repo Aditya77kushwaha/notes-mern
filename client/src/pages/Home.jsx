@@ -11,11 +11,11 @@ const Home = () => {
     axios
       .get("http://localhost:8800/")
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setNotes(res.data);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   }, []);
 
@@ -31,34 +31,32 @@ const Home = () => {
       </button>
       {Object.keys(notes).map((key) => {
         return (
-          <>
-            <div key={notes[key]?._id} className="notes">
-              <center
-                onClick={() => {
-                  history.push(`/note/${notes[key]?._id}`);
-                }}
-                className="notes-desc"
-              >
-                {notes[key]?.title}
-              </center>
-              <button
-                className="delete"
-                onClick={() => {
-                  axios
-                    .delete(`/${notes[key]?._id}`)
-                    .then((res) => {
-                      console.log(res);
-                      history.go(0);
-                    })
-                    .catch((err) => {
-                      console.log(err);
-                    });
-                }}
-              >
-                Delete
-              </button>
-            </div>
-          </>
+          <div key={notes[key]?._id} className="notes">
+            <center
+              onClick={() => {
+                history.push(`/note/${notes[key]?._id}`);
+              }}
+              className="notes-desc"
+            >
+              {notes[key]?.title}
+            </center>
+            <button
+              className="delete"
+              onClick={() => {
+                axios
+                  .delete(`/${notes[key]?._id}`)
+                  .then((res) => {
+                    // console.log(res);
+                    history.go(0);
+                  })
+                  .catch((err) => {
+                    // console.log(err);
+                  });
+              }}
+            >
+              Delete
+            </button>
+          </div>
         );
       })}
     </div>
