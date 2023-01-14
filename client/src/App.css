@@ -1,0 +1,12 @@
+.App {
+  width: 100vw;
+}
+
+button {
+  cursor: pointer;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  color: rgb(23, 23, 23);
+  font-weight: 600;
+}

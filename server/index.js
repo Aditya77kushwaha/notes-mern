@@ -56,11 +56,20 @@ app.put("/:id", async (req, res) => {
 app.delete("/:id", async (req, res) => {
   try {
     const foundNote = await Note.findById(req.params.id);
-    const deletedNote = await foundNote.deleteOne({$set:req.body})
+    await foundNote.deleteOne({$set:req.body})
     res.json("Note Deleted").status(200);
   } catch (err) {
     res.status(500).json(err);
     console.log(err);
+  }
+});
+
+app.get("/", async (req, res) => {
+  const foundNote = await Note.find();
+  try {
+    res.status(200).json(foundNote);
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 
