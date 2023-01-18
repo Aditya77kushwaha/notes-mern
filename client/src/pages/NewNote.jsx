@@ -32,6 +32,19 @@ const NewNote = () => {
         onChange={handleChange}
         placeholder="Write something..."
       />
+      <label>
+        Mark as Done
+        <input
+          type="checkbox"
+          name="status"
+          value={note?.status}
+          onChange={(e) => {
+            setnote((prev) => ({ ...prev, status: !prev.status }));
+            // console.log(note?.status);
+          }}
+          className="status"
+        />
+      </label>
       <button
         className="create"
         onClick={() => {

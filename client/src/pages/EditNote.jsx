@@ -4,17 +4,17 @@ import { useHistory, useParams } from "react-router-dom";
 import "./NewNote.css";
 
 const EditNote = () => {
-  const [note, setnote] = useState({
-    title: "",
-    desc: "",
-    img: "",
-    status: false,
-  });
   const [originalNote, setOriginalNote] = useState({
     title: "",
     desc: "",
     img: "",
     status: false,
+  });
+  const [note, setnote] = useState({
+    title: originalNote?.title,
+    desc: originalNote?.desc,
+    img: originalNote?.img,
+    status: originalNote?.status,
   });
   const history = useHistory();
   const id = useParams().id;
@@ -43,7 +43,8 @@ const EditNote = () => {
         name="title"
         className="title"
         onChange={handleChange}
-        placeholder="Title of your note"
+        placeholder="New title"
+        value={note?.title}
       />
       <textarea
         type="text"
@@ -51,10 +52,25 @@ const EditNote = () => {
         className="desc"
         onChange={handleChange}
         placeholder="Write something..."
+        value={note?.desc}
       />
+      <label>
+        Mark as Done
+        <input
+          type="checkbox"
+          name="status"
+          value={note?.status}
+          onChange={(e) => {
+            setnote((prev) => ({ ...prev, status: !prev.status }));
+            // console.log(note?.status);
+          }}
+          className="status"
+        />
+      </label>
       <button
         className="create"
         onClick={() => {
+          // console.log(note);
           axios
             .put(`/${id}`, note)
             .then((res) => {
@@ -65,6 +81,7 @@ const EditNote = () => {
               // console.log(err);
             });
         }}
+        disabled={!note.title || !note.desc}
       >
         Edit
       </button>
