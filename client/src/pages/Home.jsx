@@ -3,6 +3,8 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import "./Home.css";
 
+// export default CardGroup;
+
 const Home = () => {
   const [notes, setNotes] = useState({});
   const history = useHistory();
@@ -22,43 +24,50 @@ const Home = () => {
   return (
     <div className="home">
       <button
-        className="new-note"
+        className="home-new-note"
         onClick={() => {
           history.push("/newnote");
         }}
       >
-        New Note
+        Wield your pen
       </button>
-      {Object.keys(notes).map((key) => {
-        return (
-          <div key={notes[key]?._id} className="notes">
-            <center
-              onClick={() => {
-                history.push(`/note/${notes[key]?._id}`);
-              }}
-              className="notes-desc"
+      <div className="home-card-group">
+        {Object.keys(notes).map((key, idx) => {
+          return (
+            <div
+              key={notes[key]?._id}
+              className={`home-notes ${
+                idx % 2 === 1 ? " alt-left" : "alt-right"
+              }`}
             >
-              {notes[key]?.title}
-            </center>
-            <button
-              className="delete"
-              onClick={() => {
-                axios
-                  .delete(`/${notes[key]?._id}`)
-                  .then((res) => {
-                    // console.log(res);
-                    history.go(0);
-                  })
-                  .catch((err) => {
-                    // console.log(err);
-                  });
-              }}
-            >
-              Delete
-            </button>
-          </div>
-        );
-      })}
+              <center
+                onClick={() => {
+                  history.push(`/note/${notes[key]?._id}`);
+                }}
+                className="home-notes-title"
+              >
+                {notes[key]?.title}
+              </center>
+              <button
+                className="home-delete"
+                onClick={() => {
+                  axios
+                    .delete(`/${notes[key]?._id}`)
+                    .then((res) => {
+                      // console.log(res);
+                      history.go(0);
+                    })
+                    .catch((err) => {
+                      // console.log(err);
+                    });
+                }}
+              >
+                Trash
+              </button>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };

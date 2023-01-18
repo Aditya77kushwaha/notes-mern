@@ -1,5 +1,7 @@
 .App {
-  width: 100vw;
+  /* width: 100vw; */
+  height: 100vh;
+  overflow: hidden;
 }
 
 button {
@@ -9,4 +11,9 @@ button {
   border: none;
   color: rgb(23, 23, 23);
   font-weight: 600;
+}
+
+.wrapper {
+  width: 70%;
+  margin: 0 auto;
 }

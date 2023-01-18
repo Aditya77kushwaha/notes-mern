@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
+import "./NewNote.css";
 
 const EditNote = () => {
   const [note, setnote] = useState({
@@ -31,17 +32,26 @@ const EditNote = () => {
   }, [id]);
 
   return (
-    <div className="edit-note">
-      <div className="title">{originalNote?.title}</div>
+    <div className="wrap">
+      {/* <div className="title">{originalNote?.title}</div>
       <div className="desc">{originalNote?.desc}</div>
-      <div className="status">{originalNote?.status ? "Completed" : "Incomplete"}</div>
+      <div className="status">
+        {originalNote?.status ? "Completed" : "Incomplete"}
+      </div> */}
       <input
         type="text"
         name="title"
         className="title"
         onChange={handleChange}
+        placeholder="Title of your note"
       />
-      <input type="text" name="desc" className="desc" onChange={handleChange} />
+      <textarea
+        type="text"
+        name="desc"
+        className="desc"
+        onChange={handleChange}
+        placeholder="Write something..."
+      />
       <button
         className="create"
         onClick={() => {

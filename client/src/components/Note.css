@@ -1,6 +1,36 @@
 .notes {
-  margin: auto;
-  width: 50%;
-  border: 3px solid green;
-  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: none;
+}
+
+.note-title {
+  /* font-size: 24px; */
+  border: none;
+  width: auto;
+  margin: 0 auto;
+}
+
+sup {
+  font-size: 16px;
+  padding: 2px;
+  cursor: pointer;
+}
+
+.completed {
+  border-radius: 50%;
+  background-color: rgb(9, 173, 9);
+}
+
+.incomplete {
+  border-radius: 50%;
+  background-color: rgba(167, 6, 6, 0.84);
+}
+
+.note-desc {
+  width: 80%;
+  margin: 30px auto;
+  font-size: 18px;
+  /* font-family: cursive; */
 }

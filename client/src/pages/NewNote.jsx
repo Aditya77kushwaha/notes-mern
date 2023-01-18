@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import "./NewNote.css";
 
 const NewNote = () => {
   const [note, setnote] = useState({
@@ -16,14 +17,21 @@ const NewNote = () => {
   };
 
   return (
-    <div className="new-note">
+    <div className="wrap">
       <input
         type="text"
         name="title"
         className="title"
         onChange={handleChange}
+        placeholder="Title of your note"
       />
-      <input type="text" name="desc" className="desc" onChange={handleChange} />
+      <textarea
+        type="text"
+        name="desc"
+        className="desc"
+        onChange={handleChange}
+        placeholder="Write something..."
+      />
       <button
         className="create"
         onClick={() => {
@@ -37,8 +45,9 @@ const NewNote = () => {
               // console.log(err);
             });
         }}
+        disabled={!note.title || !note.desc}
       >
-        Create
+        Save
       </button>
     </div>
   );

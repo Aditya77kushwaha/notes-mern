@@ -9,10 +9,12 @@ import {
 } from "react-router-dom";
 import NewNote from "./pages/NewNote";
 import EditNote from "./pages/EditNote";
+import Header from "./components/Header";
 
 function App() {
   return (
     <Router className="App">
+      <Header/>
       <Switch>
         <Route exact path="/">
           <Home />
