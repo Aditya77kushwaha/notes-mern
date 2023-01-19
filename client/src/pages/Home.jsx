@@ -1,25 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
+import { NoteContext } from "../Context";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import "./Home.css";
 
-// export default CardGroup;
-
 const Home = () => {
-  const [notes, setNotes] = useState({});
+  const { notes, setNotes } = useContext(NoteContext);
   const history = useHistory();
 
   useEffect(() => {
     axios
       .get("http://localhost:8800/")
       .then((res) => {
-        // console.log(res.data);
         setNotes(res.data);
       })
       .catch((err) => {
         // console.log(err);
       });
-  }, []);
+  }, [notes, setNotes]);
 
   return (
     <div className="home">
@@ -54,7 +52,6 @@ const Home = () => {
                   axios
                     .delete(`/${notes[key]?._id}`)
                     .then((res) => {
-                      // console.log(res);
                       history.go(0);
                     })
                     .catch((err) => {
